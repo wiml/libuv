@@ -26,7 +26,7 @@ Data types
 
 .. c:type:: uv_write_t
 
-    Write request type.
+    Write request type. See :c:type:`uv_req_t`.
 
 .. c:type:: void (*uv_read_cb)(uv_stream_t* stream, ssize_t nread, const uv_buf_t* buf)
 
@@ -164,6 +164,9 @@ API
         /* writes "1234" */
         uv_write(&req1, stream, a, 2);
         uv_write(&req2, stream, b, 2);
+
+    The memory pointed to by the `req` parameter must remain valid until
+    the :c:type:`uv_write_cb` callback is called.
 
 .. c:function:: int uv_write2(uv_write_t* req, uv_stream_t* handle, const uv_buf_t bufs[], unsigned int nbufs, uv_stream_t* send_handle, uv_write_cb cb)
 
